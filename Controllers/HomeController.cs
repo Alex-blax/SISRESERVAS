@@ -1,9 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SISRESERVAS.Models;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace SISRESERVAS.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -12,7 +16,11 @@ namespace SISRESERVAS.Controllers
         {
             _logger = logger;
         }
-
+        public async Task<IActionResult> Salir()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login", "Usuarios");
+        }
         public IActionResult Index()
         {
             return View();
