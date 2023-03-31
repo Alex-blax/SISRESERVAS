@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Source\\Repos\\SISRESERVAS\\SISRESERVAS.csproj": {}
+    "C:\\Users\\Usuario\\source\\repos\\SISRESERVAS\\SISRESERVAS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Source\\Repos\\SISRESERVAS\\SISRESERVAS.csproj": {
+    "C:\\Users\\Usuario\\source\\repos\\SISRESERVAS\\SISRESERVAS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Source\\Repos\\SISRESERVAS\\SISRESERVAS.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\source\\repos\\SISRESERVAS\\SISRESERVAS.csproj",
         "projectName": "SISRESERVAS",
-        "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\SISRESERVAS\\SISRESERVAS.csproj",
+        "projectPath": "C:\\Users\\Usuario\\source\\repos\\SISRESERVAS\\SISRESERVAS.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Source\\Repos\\SISRESERVAS\\obj\\",
+        "outputPath": "C:\\Users\\Usuario\\source\\repos\\SISRESERVAS\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -53,6 +53,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.4, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.13, )"
             }
           },
           "imports": [

@@ -1,7 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using SISRESERVAS.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var connection = builder.Configuration.GetConnectionString("ConnectionDB");
+
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<Context>(options => options.UseSqlServer(connection));
 
 var app = builder.Build();
 
