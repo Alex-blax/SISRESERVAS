@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vvdb49LNsWiXW8PzG4la2ij/Yh+jkCEMy5cIonmR1535Mb0DxQ7uJS9h5yU5ej+G/6NuKowXfqk5uoY4+An4Zg==",
+  "dgSpecHash": "kbK0I4HkAd9m2BpGn0csbBzDW8uF57uScnAczIGRXhurk1jys6MGQSjt5MX60gYegzVQfP1At+7hDyNZFa4byw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuario\\Source\\Repos\\SISRESERVAS\\SISRESERVAS.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\source\\repos\\SISRESERVAS\\SISRESERVAS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
