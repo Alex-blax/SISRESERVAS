@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SISRESERVAS.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,13 @@ var connection = builder.Configuration.GetConnectionString("ConnectionDB");
 
 builder.Services.AddControllersWithViews();
 
+
 builder.Services.AddDbContext<Context>(options => options.UseSqlServer(connection));
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
+{
+    option.LoginPath = "/Usuarios/Login";
+});
 
 var app = builder.Build();
 
@@ -24,7 +31,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

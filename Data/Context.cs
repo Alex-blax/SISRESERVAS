@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SISRESERVAS.Models;
+using System.Drawing;
 
 namespace SISRESERVAS.Data
 {
@@ -7,6 +8,7 @@ namespace SISRESERVAS.Data
     {
         public Context(DbContextOptions<Context> options) : base(options)
         {
+            
         }
 
         public DbSet<usuario> usuario { get; set; }
