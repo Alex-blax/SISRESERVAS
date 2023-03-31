@@ -1,0 +1,80 @@
+﻿@model IEnumerable<SISRESERVAS.Models.reserva>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <h3>Lista de Reservas</h3>
+    </div>
+    <div class="col-sm-6">
+        <a class="btn btn-success d-block" asp-action="Crear" asp-controller="reserva">Agregar</a>
+    </div>
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Id)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.viaje.Bus)
+            </td>
+            <td>
+                Precio Por Persona
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.viaje.Conductor)
+            </td>
+            <td>
+                Destino
+            </td>
+            <td>
+                Acciones
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.viaje.Bus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.viaje.Precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.viaje.Conductor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.viaje.departamento.Nombredep)
+                </td>
+                <td>
+                    <a class="btn btn-warning d-block" asp-action="Editar" asp-route-id="@item.Id" asp-controller="reserva">Editar</a>
+                    <a class="btn btn-danger d-block" asp-action="Eliminar" asp-route-id="@item.Id" asp-controller="reserva">Eliminar</a>
+
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
