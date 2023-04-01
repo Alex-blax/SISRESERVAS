@@ -26,10 +26,10 @@ namespace SISRESERVAS.Controllers
             if (int.TryParse(userId, out parsedUserId))
             {
                 var reservas = _context.reserva
-                    .Include(r => r.departamento)
-                    .Include(r => r.viaje)
+                    .Include(r => r.departamentoviaje.viaje)
+                    .Include(r => r.departamentoviaje.departamento)
                     .Include(r => r.usuario)
-                    .Where(r => r.UsuarioId == parsedUserId)
+                    .Where(r => r.usuario.Id == parsedUserId)
                     .ToList();
                 return View(reservas);
             }
@@ -57,6 +57,21 @@ namespace SISRESERVAS.Controllers
             }
             return View(reserva);
         }
+       /* public IActionResult Editar(int? Id)
+        {
+            if (Id == null)
+            {
+
+                return NotFound();
+            }
+            //obtener datos
+            var reserva = _context.reserva.Find(Id);
+            if (reserva == null)
+            {
+                return NotFound();
+            }
+            return View(reserva);
+        }*/
 
     }
 

@@ -11,9 +11,9 @@ namespace SISRESERVAS.Models
         public string nombredep { get; set; }
         public int precio { get; set; }
 
+       
 
-
-        public ICollection<reserva> reserva { get; set; }
+        public ICollection<departamentoviaje> departamentoviaje { get; set; }
 
     }
 }

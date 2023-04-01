@@ -10,6 +10,7 @@ namespace SISRESERVAS.Data
         {
             
         }
+        public DbSet<departamentoviaje> departamentoviaje { get; set; }
 
         public DbSet<usuario> usuario { get; set; }
         public DbSet<departamento> departamento { get; set; }

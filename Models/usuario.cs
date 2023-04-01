@@ -22,5 +22,7 @@ namespace SISRESERVAS.Models
 
         [NotMapped]
         public bool MantenerActivo { get; set; }
+
+        public ICollection<reserva> reserva { get; set; }
     }
 }

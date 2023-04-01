@@ -10,8 +10,13 @@ namespace SISRESERVAS.Models
         public string bus {get;set;}
         public int asientosdis {get;set;}
         public string conductor { get; set; }
+        public DateTime horario { get; set; }
 
-        public ICollection<reserva> reserva { get; set; }
+
+      
+
+
+        public ICollection<departamentoviaje> departamentoviaje { get; set; }
     }
 
 
