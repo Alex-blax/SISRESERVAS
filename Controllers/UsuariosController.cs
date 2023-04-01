@@ -64,13 +64,15 @@ namespace SISRESERVAS.Controllers
                         {
                             if (dr["Correo"] != null && u.Correo != null)
                             {
+                                int userId = Convert.ToInt32(dr["id"]);
                                 List<Claim> c = new List<Claim>()
                                 {
-                                    new Claim(ClaimTypes.NameIdentifier, u.Correo)
+                                    /*new Claim(ClaimTypes.NameIdentifier, u.Correo)*/
+                                    new Claim(ClaimTypes.NameIdentifier, userId.ToString()),new Claim(ClaimTypes.Email, u.Correo)
+
                                 };
                                 ClaimsIdentity ci = new(c, CookieAuthenticationDefaults.AuthenticationScheme);
                                 AuthenticationProperties p = new();
-
                                 p.AllowRefresh = true;
                                 p.IsPersistent = u.MantenerActivo;
 

@@ -11,18 +11,16 @@ namespace SISRESERVAS.Models
         public DateTime Fecha { get; set; }
         public int Cantidad { get; set; }
 
+        public int DepartamentoId { get; set; }
+        public departamento departamento { get; set; }
+
         public int ViajeId { get; set; }
+        public viaje viaje { get; set; }
         public int UsuarioId { get; set; }
         /*        public int DepartamentoId { get; set; }
         */
-        [ForeignKey("ViajeId")]
-        public virtual viaje viaje { get; set; }
-
         [ForeignKey("UsuarioId")]
         public virtual usuario usuario { get; set; }
-
-        /*  [ForeignKey("DepartamentoId")]
-          public virtual departamento departamento { get; set; }*/
-
+      
     }
 }

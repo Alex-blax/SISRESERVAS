@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SISRESERVAS.Models
 {
@@ -6,13 +7,13 @@ namespace SISRESERVAS.Models
     {
         //aqui va la info de cada departamento para viajar de bolivia
         [Key]
-        private int id;
-        private string nombredep;
-/*        private int estado;
-*/
-        public int Id { get => id; set => id = value; }
-        public string Nombredep { get => nombredep; set => nombredep = value; }
-/*        public int Estado { get => estado; set => estado = value; }
-*/
+        public int departamentoid { get; set; }
+        public string nombredep { get; set; }
+        public int precio { get; set; }
+
+
+
+        public ICollection<reserva> reserva { get; set; }
+
     }
 }

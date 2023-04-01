@@ -1,10 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SISRESERVAS.Data;
 using SISRESERVAS.Models;
+using System.Security.Claims;
+using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace SISRESERVAS.Controllers
 {
+    [Authorize]
     public class ReservaController : Controller
     {
         private readonly Context _context;
@@ -14,24 +20,26 @@ namespace SISRESERVAS.Controllers
         }
         public IActionResult Index()
         {
-            var reservas = _context.reserva.Include(r => r.viaje).ThenInclude(v => v.departamento).ToList();
-            return View(reservas);
-        }
-        public IActionResult Crear()
-        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int parsedUserId;
 
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Create(reserva reserva)
-        {
-            if (ModelState.IsValid)
+            if (int.TryParse(userId, out parsedUserId))
             {
-                _context.reserva.Add(reserva);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
+                var reservas = _context.reserva
+                    .Include(r => r.departamento)
+                    .Include(r => r.viaje)
+                    .Include(r => r.usuario)
+                    .Where(r => r.UsuarioId == parsedUserId)
+                    .ToList();
+                return View(reservas);
             }
-            return View();
+            else
+            {
+                return BadRequest("El usuario no tiene un ID válido.");
+            }
         }
+
     }
+
+    
 }
