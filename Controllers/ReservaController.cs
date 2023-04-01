@@ -39,6 +39,25 @@ namespace SISRESERVAS.Controllers
             }
         }
 
+        public IActionResult Crear()
+        {
+            ViewData["DepartamentoId"] = new SelectList(_context.departamento, "departamentoid", "nombredep");
+            ViewData["ViajeId"] = new SelectList(_context.viaje, "viajeid", "bus");
+            return View();
+        }
+        //hay el mismo problema que en la U
+        [HttpPost]
+        public IActionResult Create(reserva reserva)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.reserva.Add(reserva);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(reserva);
+        }
+
     }
 
     

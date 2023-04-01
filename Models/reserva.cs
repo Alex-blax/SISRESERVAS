@@ -5,22 +5,27 @@ namespace SISRESERVAS.Models
 {
     public class reserva
     {
-        //aqui la info de las reservas de buses de tabla departamento usuario 
+       
+
         [Key]
         public int Id { get; set; }
         public DateTime Fecha { get; set; }
         public int Cantidad { get; set; }
 
+
+        [ForeignKey("DepartamentoId")]
+
         public int DepartamentoId { get; set; }
         public departamento departamento { get; set; }
 
+        [ForeignKey("ViajeId")]
         public int ViajeId { get; set; }
         public viaje viaje { get; set; }
-        public int UsuarioId { get; set; }
-        /*        public int DepartamentoId { get; set; }
-        */
+
         [ForeignKey("UsuarioId")]
-        public virtual usuario usuario { get; set; }
-      
+        public int UsuarioId { get; set; }
+
+        public usuario usuario { get; set; }
+
     }
 }
