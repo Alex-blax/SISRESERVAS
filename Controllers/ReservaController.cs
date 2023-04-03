@@ -52,12 +52,6 @@ namespace SISRESERVAS.Controllers
                             Precio = r.Viaje.Departamento.Precio
                         } : null
                     } : null,
-                    UsuarioId = r.UsuarioId,
-                    Usuario = new usuario
-                    {
-                        Id = r.Usuario.Id,
-                        Nombre = r.Usuario.Nombre
-                    }
                 });
 
                 return View(modelo);
