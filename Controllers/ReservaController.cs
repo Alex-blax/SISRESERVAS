@@ -38,22 +38,22 @@ namespace SISRESERVAS.Controllers
                     IdRes = r.IdRes,
                     FechaReserva = r.FechaReserva,
                     ViajeId = r.ViajeId,
-                    Viaje = r.Viaje != null ? new viaje
+                    Viaje = new viaje
                     {
                         IdViaje = r.Viaje.IdViaje,
                         Bus = r.Viaje.Bus,
                         Conductor = r.Viaje.Conductor,
                         Fecha = r.Viaje.Fecha,
                         DepartamentoId = r.Viaje.DepartamentoId,
-                        Departamento = r.Viaje.Departamento != null ? new departamento
+                        Departamento = new departamento
                         {
                             IdDep = r.Viaje.Departamento.IdDep,
                             NombreDep = r.Viaje.Departamento.NombreDep,
                             Precio = r.Viaje.Departamento.Precio
-                        } : null
-                    } : null,
+                        }
+                    },
+                    
                 });
-
                 return View(modelo);
             }
             else
