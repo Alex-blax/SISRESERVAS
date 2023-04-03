@@ -50,6 +50,9 @@ namespace SISRESERVAS.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdRes"));
 
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("FechaReserva")
                         .HasColumnType("datetime2");
 

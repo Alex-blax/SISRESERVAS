@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SISRESERVAS.Migrations
 {
     /// <inheritdoc />
-    public partial class migfix1 : Migration
+    public partial class mig1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -72,6 +72,7 @@ namespace SISRESERVAS.Migrations
                     IdRes = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FechaReserva = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Cantidad = table.Column<int>(type: "int", nullable: false),
                     ViajeId = table.Column<int>(type: "int", nullable: false),
                     UsuarioId = table.Column<int>(type: "int", nullable: false)
                 },

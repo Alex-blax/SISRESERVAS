@@ -12,8 +12,8 @@ using SISRESERVAS.Data;
 namespace SISRESERVAS.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230403144313_migfix1")]
-    partial class migfix1
+    [Migration("20230403154226_mig1")]
+    partial class mig1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,6 +52,9 @@ namespace SISRESERVAS.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdRes"));
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("FechaReserva")
                         .HasColumnType("datetime2");

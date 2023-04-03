@@ -64,8 +64,8 @@ namespace SISRESERVAS.Controllers
 
         public IActionResult Crear()
         {
-            ViewData["DepartamentoId"] = new SelectList(_context.Departamentos, "departamentoid", "nombredep");
-            ViewData["ViajeId"] = new SelectList(_context.Viajes, "viajeid", "bus");
+            ViewData["DepartamentoId"] = new SelectList(_context.Departamentos, "IdDep", "NombreDep");
+            ViewData["ViajeId"] = new SelectList(_context.Viajes, "IdViaje", "Bus");
             return View();
         }
         //hay el mismo problema que en la U

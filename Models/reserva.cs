@@ -9,7 +9,7 @@ namespace SISRESERVAS.Models
 
         public int IdRes { get; set; }
         public DateTime FechaReserva { get; set; }
-
+        public int Cantidad { get; set; }
 
 
         public int ViajeId { get; set; }

@@ -1,4 +1,4 @@
-﻿@*@model SISRESERVAS.Models.reserva
+﻿@model SISRESERVAS.Models.reserva
 
 @{
     ViewData["Title"] = "Crear";
@@ -19,19 +19,14 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger">
                 </div>
                 <div class="form-group">
-                    <label asp-for="departamentoviaje.viaje.bus"></label>
-                    <select asp-for="departamentoviaje.viaje.bus" class="form-control" asp-items="ViewBag.ViajeId"></select>
-                    <span asp-validation-for="departamentoviaje.viaje.bus" class="text-danger"></span>
+                    <label asp-for="Viaje.Bus"></label>
+                    <select asp-for="Viaje.Bus" class="form-control" asp-items="ViewBag.IdViaje"></select>
+                    <span asp-validation-for="Viaje.Bus" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="departamentoviaje.departamento.nombredep"></label>
-                    <select asp-for="departamentoviaje.departamento.nombredep" class="form-control" asp-items="ViewBag.DepartamentoId"></select>
-                    <span asp-validation-for="departamentoviaje.departamento.nombredep" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="departamentoviaje.viaje.horario"></label>
-                    <input asp-for="departamentoviaje.viaje.horario" class="form-control" />
-                    <span asp-validation-for="departamentoviaje.viaje.horario" class="text-danger"></span>
+                    <label asp-for="Viaje.Departamento.NombreDep"></label>
+                    <select asp-for="Viaje.Departamento.NombreDep" class="form-control" asp-items="ViewBag.IdDep"></select>
+                    <span asp-validation-for="Viaje.Departamento.NombreDep" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Cantidad"></label>
@@ -51,4 +46,3 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
-*@
