@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SISRESERVAS.Models.reserva>
+﻿@model IEnumerable<reserva>
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,24 +17,13 @@
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <td>
-                Departamento
-            </td>
-            <td>
-                Fecha
-            </td>
-            <td>
-                Cantidad
-            </td>
-            <td>
-                Conductor
-            </td>
-            <td>
-                Bus
-            </td>
-            <td>
-                Precio
-            </td>
+            <th>Id</th>
+            <th>Departamento</th>
+            <th>Fecha</th>
+            <th>Bus</th>
+            <th>Conductor</th>
+            <th>Precio</th>
+            <th>Fecha de reserva</th>
             <td>
                 Acciones
             </td>
@@ -43,15 +33,16 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.departamentoviaje.departamento.nombredep</td>
-                <td>@item.departamentoviaje.viaje.horario.ToShortDateString()</td>
-                <td>@item.Cantidad</td>
-                <td>@item.departamentoviaje.viaje.conductor</td>
-                <td>@item.departamentoviaje.viaje.bus</td>
-                <td>@item.departamentoviaje.departamento.precio</td>
+                <td>@item.IdRes</td>
+                <td>@item.Viaje.Departamento.NombreDep</td>
+                <td>@item.Viaje.Fecha.ToShortDateString()</td>
+                <td>@item.Viaje.Bus</td>
+                <td>@item.Viaje.Conductor</td>
+                <td>@item.Viaje.Departamento.Precio</td>
+                <td>@item.FechaReserva.ToShortDateString()</td>
                 <td>
-                    <a class="btn btn-warning d-block" asp-action="Editar" asp-route-id="@item.Id" asp-controller="Reserva">Editar</a>
-                    <a class="btn btn-danger d-block" asp-action="Eliminar" asp-route-id="@item.Id" asp-controller="Reserva">Eliminar</a>
+                    <a class="btn btn-warning d-block" asp-action="Editar" asp-route-id="@item.IdRes" asp-controller="Reserva">Editar</a>
+                    <a class="btn btn-danger d-block" asp-action="Eliminar" asp-route-id="@item.IdRes" asp-controller="Reserva">Eliminar</a>
 
                 </td>
 

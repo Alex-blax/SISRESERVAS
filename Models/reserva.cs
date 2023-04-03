@@ -5,20 +5,18 @@ namespace SISRESERVAS.Models
 {
     public class reserva
     {
-       
-
         [Key]
-        public int Id { get; set; }
-/*        public DateTime Fecha { get; set; }
-*/        public int Cantidad { get; set; }
 
-
-        public departamentoviaje departamentoviaje { get; set; }
+        public int IdRes { get; set; }
+        public DateTime FechaReserva { get; set; }
 
 
 
+        public int ViajeId { get; set; }
+        public virtual viaje Viaje { get; set; }
+        public int UsuarioId { get; set; }
+        public virtual usuario Usuario { get; set; }
 
-        public usuario usuario { get; set; }
 
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace SISRESERVAS.Controllers
+
 {
     public class UsuariosController : Controller
     {
@@ -18,7 +19,7 @@ namespace SISRESERVAS.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<usuario> ListaUsuarios = _context.usuario;
+            IEnumerable<usuario> ListaUsuarios = _context.Usuarios;
             return View(ListaUsuarios);
         }
         public IActionResult Crear()
@@ -30,7 +31,7 @@ namespace SISRESERVAS.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.usuario.Add(usuario);
+                _context.Usuarios.Add(usuario);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Login));
             }

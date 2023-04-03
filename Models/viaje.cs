@@ -1,22 +1,28 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+
 namespace SISRESERVAS.Models
 {
     public class viaje
     {
-        //en esta clase iran los distintos viajes disponibles por dia
+        public viaje()
+        {
+            Reservas = new HashSet<reserva>();
+        }
+
         [Key]
-        public int viajeid {get;set;}
-        public string bus {get;set;}
-        public int asientosdis {get;set;}
-        public string conductor { get; set; }
-        public DateTime horario { get; set; }
+        public int IdViaje { get; set; }
+        public string Bus { get; set; }
+        public string Conductor { get; set; }
+        public DateTime Fecha { get; set; }
+        public int AsientosDisponibles { get; set; }
 
 
-      
+        public ISet<reserva> Reservas { get; set; }
 
-
-        public ICollection<departamentoviaje> departamentoviaje { get; set; }
+        public int DepartamentoId { get; set; }
+        public virtual departamento Departamento { get; set; }
     }
 
 

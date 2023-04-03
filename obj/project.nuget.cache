@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "inKmuLvgXmy8DViRKFFaVVCW38aqBoMUgzGFCz9WTKhNkKbbxiV89BdhOnrKBvXiRzTf1cA5jeF6/muRvdCLsg==",
+  "dgSpecHash": "Ag/1+0jqP17fFKdEv6KVdyNkVR+LQ4K/64RNy0jbi0gp2897jQUWvTs0sX5H84CPvYtDMSp9Zwgd2Npj6GK+MQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Samue\\Source\\Repos\\Alex-blax\\SISRESERVAS\\SISRESERVAS.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,9 @@
     "C:\\Users\\Samue\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\Samue\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\Samue\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
-    "C:\\Users\\Samue\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.0\\microsoft.aspnetcore.razor.language.6.0.0.nupkg.sha512",
+    "C:\\Users\\Samue\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\6.0.15\\microsoft.aspnetcore.mvc.razor.extensions.6.0.15.nupkg.sha512",
+    "C:\\Users\\Samue\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\6.0.15\\microsoft.aspnetcore.mvc.razor.runtimecompilation.6.0.15.nupkg.sha512",
+    "C:\\Users\\Samue\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.15\\microsoft.aspnetcore.razor.language.6.0.15.nupkg.sha512",
     "C:\\Users\\Samue\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
     "C:\\Users\\Samue\\.nuget\\packages\\microsoft.build\\17.3.2\\microsoft.build.17.3.2.nupkg.sha512",
     "C:\\Users\\Samue\\.nuget\\packages\\microsoft.build.framework\\17.3.2\\microsoft.build.framework.17.3.2.nupkg.sha512",
@@ -22,7 +24,7 @@
     "C:\\Users\\Samue\\.nuget\\packages\\microsoft.codeanalysis.csharp.scripting\\4.0.0\\microsoft.codeanalysis.csharp.scripting.4.0.0.nupkg.sha512",
     "C:\\Users\\Samue\\.nuget\\packages\\microsoft.codeanalysis.csharp.workspaces\\4.0.0\\microsoft.codeanalysis.csharp.workspaces.4.0.0.nupkg.sha512",
     "C:\\Users\\Samue\\.nuget\\packages\\microsoft.codeanalysis.features\\4.0.0\\microsoft.codeanalysis.features.4.0.0.nupkg.sha512",
-    "C:\\Users\\Samue\\.nuget\\packages\\microsoft.codeanalysis.razor\\6.0.0\\microsoft.codeanalysis.razor.6.0.0.nupkg.sha512",
+    "C:\\Users\\Samue\\.nuget\\packages\\microsoft.codeanalysis.razor\\6.0.15\\microsoft.codeanalysis.razor.6.0.15.nupkg.sha512",
     "C:\\Users\\Samue\\.nuget\\packages\\microsoft.codeanalysis.scripting.common\\4.0.0\\microsoft.codeanalysis.scripting.common.4.0.0.nupkg.sha512",
     "C:\\Users\\Samue\\.nuget\\packages\\microsoft.codeanalysis.visualbasic\\4.0.0\\microsoft.codeanalysis.visualbasic.4.0.0.nupkg.sha512",
     "C:\\Users\\Samue\\.nuget\\packages\\microsoft.codeanalysis.visualbasic.features\\4.0.0\\microsoft.codeanalysis.visualbasic.features.4.0.0.nupkg.sha512",

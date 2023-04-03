@@ -1,19 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SISRESERVAS.Models
 {
     public class departamento
     {
-        //aqui va la info de cada departamento para viajar de bolivia
+        public departamento()
+        {
+            Viajes = new HashSet<viaje>();
+        }
+
         [Key]
-        public int departamentoid { get; set; }
-        public string nombredep { get; set; }
-        public int precio { get; set; }
+        public int IdDep { get; set; }
+        public string NombreDep { get; set; }
+        public int Precio { get; set; }
 
-       
 
-        public ICollection<departamentoviaje> departamentoviaje { get; set; }
-
+        public ISet<viaje> Viajes { get; set; }
     }
 }

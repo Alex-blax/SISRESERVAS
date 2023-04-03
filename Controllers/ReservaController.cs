@@ -25,13 +25,42 @@ namespace SISRESERVAS.Controllers
 
             if (int.TryParse(userId, out parsedUserId))
             {
-                var reservas = _context.reserva
-                    .Include(r => r.departamentoviaje.viaje)
-                    .Include(r => r.departamentoviaje.departamento)
-                    .Include(r => r.usuario)
-                    .Where(r => r.usuario.Id == parsedUserId)
+                // Obtener las reservas del usuario actual
+                var reservas = _context.Reservas
+                    .Where(r => r.Usuario.Id == parsedUserId)
+                    .Include(r => r.Viaje)
+                        .ThenInclude(v => v.Departamento)
                     .ToList();
-                return View(reservas);
+
+                // Mapear las reservas a un modelo de vista
+                var modelo = reservas.Select(r => new reserva
+                {
+                    IdRes = r.IdRes,
+                    FechaReserva = r.FechaReserva,
+                    ViajeId = r.ViajeId,
+                    Viaje = r.Viaje != null ? new viaje
+                    {
+                        IdViaje = r.Viaje.IdViaje,
+                        Bus = r.Viaje.Bus,
+                        Conductor = r.Viaje.Conductor,
+                        Fecha = r.Viaje.Fecha,
+                        DepartamentoId = r.Viaje.DepartamentoId,
+                        Departamento = r.Viaje.Departamento != null ? new departamento
+                        {
+                            IdDep = r.Viaje.Departamento.IdDep,
+                            NombreDep = r.Viaje.Departamento.NombreDep,
+                            Precio = r.Viaje.Departamento.Precio
+                        } : null
+                    } : null,
+                    UsuarioId = r.UsuarioId,
+                    Usuario = new usuario
+                    {
+                        Id = r.Usuario.Id,
+                        Nombre = r.Usuario.Nombre
+                    }
+                });
+
+                return View(modelo);
             }
             else
             {
@@ -41,8 +70,8 @@ namespace SISRESERVAS.Controllers
 
         public IActionResult Crear()
         {
-            ViewData["DepartamentoId"] = new SelectList(_context.departamento, "departamentoid", "nombredep");
-            ViewData["ViajeId"] = new SelectList(_context.viaje, "viajeid", "bus");
+            ViewData["DepartamentoId"] = new SelectList(_context.Departamentos, "departamentoid", "nombredep");
+            ViewData["ViajeId"] = new SelectList(_context.Viajes, "viajeid", "bus");
             return View();
         }
         //hay el mismo problema que en la U
@@ -51,27 +80,12 @@ namespace SISRESERVAS.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.reserva.Add(reserva);
+                _context.Reservas.Add(reserva);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(reserva);
         }
-       /* public IActionResult Editar(int? Id)
-        {
-            if (Id == null)
-            {
-
-                return NotFound();
-            }
-            //obtener datos
-            var reserva = _context.reserva.Find(Id);
-            if (reserva == null)
-            {
-                return NotFound();
-            }
-            return View(reserva);
-        }*/
 
     }
 
