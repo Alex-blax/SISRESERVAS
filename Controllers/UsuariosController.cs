@@ -37,7 +37,37 @@ namespace SISRESERVAS.Controllers
             }
             return View();
         }
+        public IActionResult Editar(int? Id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int parsedUserId;
+            int.TryParse(userId, out parsedUserId);
 
+            if (parsedUserId == null) { return NotFound(); }
+
+            var usuario = _context.Usuarios.Find(parsedUserId);
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return View(usuario);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Edit(usuario usuario)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Usuarios.Update(usuario);
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
         public IActionResult Login()
         {
             ClaimsPrincipal c = HttpContext.User;
