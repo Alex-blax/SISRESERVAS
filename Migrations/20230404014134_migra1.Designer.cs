@@ -12,8 +12,8 @@ using SISRESERVAS.Data;
 namespace SISRESERVAS.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230403154226_mig1")]
-    partial class mig1
+    [Migration("20230404014134_migra1")]
+    partial class migra1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,39 @@ namespace SISRESERVAS.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("SISRESERVAS.Models.bus", b =>
+                {
+                    b.Property<int>("idbus")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idbus"));
+
+                    b.Property<int>("nombrebus")
+                        .HasColumnType("int");
+
+                    b.HasKey("idbus");
+
+                    b.ToTable("Viajes");
+                });
+
+            modelBuilder.Entity("SISRESERVAS.Models.chofer", b =>
+                {
+                    b.Property<int>("Idchofer")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Idchofer"));
+
+                    b.Property<string>("Nombrechofer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Idchofer");
+
+                    b.ToTable("chofer");
+                });
 
             modelBuilder.Entity("SISRESERVAS.Models.departamento", b =>
                 {
@@ -59,17 +92,27 @@ namespace SISRESERVAS.Migrations
                     b.Property<DateTime>("FechaReserva")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UsuarioId")
+                    b.Property<int>("busidbus")
                         .HasColumnType("int");
 
-                    b.Property<int>("ViajeId")
+                    b.Property<int>("choferIdchofer")
+                        .HasColumnType("int");
+
+                    b.Property<int>("departamentoIdDep")
+                        .HasColumnType("int");
+
+                    b.Property<int>("usuarioId")
                         .HasColumnType("int");
 
                     b.HasKey("IdRes");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("busidbus");
 
-                    b.HasIndex("ViajeId");
+                    b.HasIndex("choferIdchofer");
+
+                    b.HasIndex("departamentoIdDep");
+
+                    b.HasIndex("usuarioId");
 
                     b.ToTable("Reservas");
                 });
@@ -106,81 +149,39 @@ namespace SISRESERVAS.Migrations
                     b.ToTable("Usuarios");
                 });
 
-            modelBuilder.Entity("SISRESERVAS.Models.viaje", b =>
-                {
-                    b.Property<int>("IdViaje")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdViaje"));
-
-                    b.Property<int>("AsientosDisponibles")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Bus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Conductor")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DepartamentoId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("IdViaje");
-
-                    b.HasIndex("DepartamentoId");
-
-                    b.ToTable("Viajes");
-                });
-
             modelBuilder.Entity("SISRESERVAS.Models.reserva", b =>
                 {
-                    b.HasOne("SISRESERVAS.Models.usuario", "Usuario")
-                        .WithMany("Reservas")
-                        .HasForeignKey("UsuarioId")
+                    b.HasOne("SISRESERVAS.Models.bus", "bus")
+                        .WithMany()
+                        .HasForeignKey("busidbus")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SISRESERVAS.Models.viaje", "Viaje")
-                        .WithMany("Reservas")
-                        .HasForeignKey("ViajeId")
+                    b.HasOne("SISRESERVAS.Models.chofer", "chofer")
+                        .WithMany()
+                        .HasForeignKey("choferIdchofer")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Usuario");
-
-                    b.Navigation("Viaje");
-                });
-
-            modelBuilder.Entity("SISRESERVAS.Models.viaje", b =>
-                {
-                    b.HasOne("SISRESERVAS.Models.departamento", "Departamento")
-                        .WithMany("Viajes")
-                        .HasForeignKey("DepartamentoId")
+                    b.HasOne("SISRESERVAS.Models.departamento", "departamento")
+                        .WithMany()
+                        .HasForeignKey("departamentoIdDep")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Departamento");
-                });
+                    b.HasOne("SISRESERVAS.Models.usuario", "usuario")
+                        .WithMany()
+                        .HasForeignKey("usuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("SISRESERVAS.Models.departamento", b =>
-                {
-                    b.Navigation("Viajes");
-                });
+                    b.Navigation("bus");
 
-            modelBuilder.Entity("SISRESERVAS.Models.usuario", b =>
-                {
-                    b.Navigation("Reservas");
-                });
+                    b.Navigation("chofer");
 
-            modelBuilder.Entity("SISRESERVAS.Models.viaje", b =>
-                {
-                    b.Navigation("Reservas");
+                    b.Navigation("departamento");
+
+                    b.Navigation("usuario");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,12 +6,8 @@ namespace SISRESERVAS.Models
 {
     public class usuario
     {
-        public usuario()
-        {
-            Reservas = new HashSet<reserva>();
-        }
-        [Key]
 
+        [Key]
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
@@ -21,7 +17,6 @@ namespace SISRESERVAS.Models
 
 
 
-        public ISet<reserva> Reservas { get; set; }
 
         [NotMapped]
         public bool MantenerActivo { get; set; }

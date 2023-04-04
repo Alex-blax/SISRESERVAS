@@ -37,6 +37,7 @@ namespace SISRESERVAS.Controllers
             }
             return View();
         }
+
         public IActionResult Login()
         {
             ClaimsPrincipal c = HttpContext.User;

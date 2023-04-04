@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\source\\repos\\SISRESERVAS\\SISRESERVAS.csproj": {}
+    "C:\\Users\\Samue\\Source\\Repos\\Alex-blax\\SISRESERVAS\\SISRESERVAS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\source\\repos\\SISRESERVAS\\SISRESERVAS.csproj": {
+    "C:\\Users\\Samue\\Source\\Repos\\Alex-blax\\SISRESERVAS\\SISRESERVAS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\source\\repos\\SISRESERVAS\\SISRESERVAS.csproj",
+        "projectUniqueName": "C:\\Users\\Samue\\Source\\Repos\\Alex-blax\\SISRESERVAS\\SISRESERVAS.csproj",
         "projectName": "SISRESERVAS",
-        "projectPath": "C:\\Users\\Usuario\\source\\repos\\SISRESERVAS\\SISRESERVAS.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\source\\repos\\SISRESERVAS\\obj\\",
+        "projectPath": "C:\\Users\\Samue\\Source\\Repos\\Alex-blax\\SISRESERVAS\\SISRESERVAS.csproj",
+        "packagesPath": "C:\\Users\\Samue\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Samue\\Source\\Repos\\Alex-blax\\SISRESERVAS\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Samue\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
