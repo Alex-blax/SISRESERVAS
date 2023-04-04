@@ -6,11 +6,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SISRESERVAS.Migrations
 {
     /// <inheritdoc />
-    public partial class mig1 : Migration
+    public partial class migra1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "chofer",
+                columns: table => new
+                {
+                    Idchofer = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombrechofer = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_chofer", x => x.Idchofer);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Departamentos",
                 columns: table => new
@@ -46,23 +59,13 @@ namespace SISRESERVAS.Migrations
                 name: "Viajes",
                 columns: table => new
                 {
-                    IdViaje = table.Column<int>(type: "int", nullable: false)
+                    idbus = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Bus = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Conductor = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    AsientosDisponibles = table.Column<int>(type: "int", nullable: false),
-                    DepartamentoId = table.Column<int>(type: "int", nullable: false)
+                    nombrebus = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Viajes", x => x.IdViaje);
-                    table.ForeignKey(
-                        name: "FK_Viajes_Departamentos_DepartamentoId",
-                        column: x => x.DepartamentoId,
-                        principalTable: "Departamentos",
-                        principalColumn: "IdDep",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_Viajes", x => x.idbus);
                 });
 
             migrationBuilder.CreateTable(
@@ -73,40 +76,59 @@ namespace SISRESERVAS.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FechaReserva = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Cantidad = table.Column<int>(type: "int", nullable: false),
-                    ViajeId = table.Column<int>(type: "int", nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false)
+                    choferIdchofer = table.Column<int>(type: "int", nullable: false),
+                    usuarioId = table.Column<int>(type: "int", nullable: false),
+                    departamentoIdDep = table.Column<int>(type: "int", nullable: false),
+                    busidbus = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reservas", x => x.IdRes);
                     table.ForeignKey(
-                        name: "FK_Reservas_Usuarios_UsuarioId",
-                        column: x => x.UsuarioId,
+                        name: "FK_Reservas_Departamentos_departamentoIdDep",
+                        column: x => x.departamentoIdDep,
+                        principalTable: "Departamentos",
+                        principalColumn: "IdDep",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Reservas_Usuarios_usuarioId",
+                        column: x => x.usuarioId,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Reservas_Viajes_ViajeId",
-                        column: x => x.ViajeId,
+                        name: "FK_Reservas_Viajes_busidbus",
+                        column: x => x.busidbus,
                         principalTable: "Viajes",
-                        principalColumn: "IdViaje",
+                        principalColumn: "idbus",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Reservas_chofer_choferIdchofer",
+                        column: x => x.choferIdchofer,
+                        principalTable: "chofer",
+                        principalColumn: "Idchofer",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservas_UsuarioId",
+                name: "IX_Reservas_busidbus",
                 table: "Reservas",
-                column: "UsuarioId");
+                column: "busidbus");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservas_ViajeId",
+                name: "IX_Reservas_choferIdchofer",
                 table: "Reservas",
-                column: "ViajeId");
+                column: "choferIdchofer");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Viajes_DepartamentoId",
-                table: "Viajes",
-                column: "DepartamentoId");
+                name: "IX_Reservas_departamentoIdDep",
+                table: "Reservas",
+                column: "departamentoIdDep");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reservas_usuarioId",
+                table: "Reservas",
+                column: "usuarioId");
         }
 
         /// <inheritdoc />
@@ -116,13 +138,16 @@ namespace SISRESERVAS.Migrations
                 name: "Reservas");
 
             migrationBuilder.DropTable(
+                name: "Departamentos");
+
+            migrationBuilder.DropTable(
                 name: "Usuarios");
 
             migrationBuilder.DropTable(
                 name: "Viajes");
 
             migrationBuilder.DropTable(
-                name: "Departamentos");
+                name: "chofer");
         }
     }
 }

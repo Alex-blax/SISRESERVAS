@@ -35,6 +35,11 @@
                     <div class="alert alert-success" role="alert">
                         <p>@TempData["mensaje"]</p>
                     </div>
+                    <script>
+                     setTimeout(function() {
+                     $('.alert').fadeOut('slow');
+                    }, 5000);
+                    </script>
 }
                 </div>
             </form>

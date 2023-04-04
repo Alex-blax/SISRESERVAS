@@ -1,7 +1,7 @@
 ﻿@model SISRESERVAS.Models.usuario;
 @{
- ViewData["Title"] = "Login";
- Layout = "~/Views/Shared/_nuevolayout.cshtml";
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_nuevolayout.cshtml";
 }
 
 
@@ -43,7 +43,18 @@
                     </div><br>
                     <div class="col-sm-4">
                         <a class="btn btn-primary" asp-action="Crear" asp-controller="Usuarios">Registrarse</a>
+                    </div><br><br>
+                    @if(TempData["mensaje"] != null)
+{
+                    <div class="alert alert-success" role="alert">
+                        <p>@TempData["mensaje"]</p>
                     </div>
+                    <script>
+                     setTimeout(function() {
+                     $('.alert').fadeOut('slow');
+                    }, 5000);
+                    </script>
+}
                 </div>
             </form>
             
@@ -54,4 +65,4 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-   }
+    }

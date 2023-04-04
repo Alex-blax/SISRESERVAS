@@ -33,11 +33,67 @@ namespace SISRESERVAS.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Usuarios.Add(usuario);
-                _context.SaveChanges();
-                return RedirectToAction(nameof(Login));
+                if(usuario.Edad >= 18 && usuario.Contraseña.Length > 7 ) 
+                { 
+                  _context.Usuarios.Add(usuario);
+                  _context.SaveChanges();
+                  return RedirectToAction(nameof(Login));
+                }
+                else
+                {
+                  TempData["mensaje"] = "Los campos de edad o contraseña no son correctos";
+                  return RedirectToAction("Crear", "Usuarios");
+                }
             }
-            return View();
+            else
+            {
+               TempData["mensaje"] = "Por favor Introduzca sus datos";
+               return RedirectToAction("Crear", "Usuarios");
+            }
+        }
+        public IActionResult Editar(int? Id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int parsedUserId;
+            int.TryParse(userId, out parsedUserId);
+
+            if (parsedUserId == null) { return NotFound(); }
+
+            var usuario = _context.Usuarios.Find(parsedUserId);
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return View(usuario);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Edit(usuario usuario)
+        {
+            if (ModelState.IsValid)
+            {
+                if(usuario.Edad >= 18 && usuario.Contraseña.Length > 7 ) 
+                { 
+                  _context.Usuarios.Update(usuario);
+                  _context.SaveChanges();
+                  TempData["mensaje"] = "Edicion exitosa";
+                  return RedirectToAction("Editar","Usuarios");
+                }
+                else
+                {
+                  TempData["mensaje"] = "Los campos de edad o contraseña no son correctos";
+                  return RedirectToAction("Editar", "Usuarios");
+                }
+            }
+            else
+            {
+               TempData["mensaje"] = "Por favor Introduzca sus datos";
+               return RedirectToAction("Editar", "Usuarios");
+            }
         }
         public IActionResult Login()
         {
@@ -94,8 +150,9 @@ namespace SISRESERVAS.Controllers
                             }
                         }
                         con.Close();
+                        TempData["mensaje"] = "Credenciales no validas.";
+                        return RedirectToAction("Login", "Usuarios");
                     }
-                    return View();
                 }
             }
             catch (System.Exception e)
@@ -147,16 +204,13 @@ namespace SISRESERVAS.Controllers
                                 smtp.Send(mensajeemail);
                                 smtp.Dispose();
                                 TempData["mensaje"] = "Correo enviado correctamente";
-                                return RedirectToAction("InicioRecuperar");
-                            }
-                            else
-                            {
-                                TempData["mensaje"] = "Correo electronico no valido.";
+                                return RedirectToAction("IniciarRecuperacion", "Usuarios");
                             }
                         }
                         con.Close();
+                        TempData["mensaje"] = "Correo electronico no valido.";
+                        return RedirectToAction("IniciarRecuperacion", "Usuarios");
                     }
-                    return View();
                 }
             }
             catch (System.Exception e)
