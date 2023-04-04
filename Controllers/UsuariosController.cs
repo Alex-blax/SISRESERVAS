@@ -6,6 +6,8 @@ using System.Data.SqlClient;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Net.Mail;
+using System.Net;
 
 namespace SISRESERVAS.Controllers
 
@@ -108,6 +110,60 @@ namespace SISRESERVAS.Controllers
         public IActionResult Error()
         {
             return View("Error!");
+        }
+        public IActionResult IniciarRecuperacion()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Recuperar(usuario u)
+        {
+            try
+            {
+                using (SqlConnection con = new("Data Source=.;Initial Catalog=DBpasajes;Integrated Security=True;Encrypt=False"))
+                {
+                    using (SqlCommand cmd = new("sp_validar_correousuario", con))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.Add("@Correo", System.Data.SqlDbType.VarChar).Value = u.Correo;
+                        con.Open();
+                        var dr = cmd.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            if (dr["Correo"] != null && u.Correo != null)
+                            {
+                                string correoreceptor = dr["Correo"]?.ToString() ?? "";
+                                string contraseña = dr["Contraseña"]?.ToString() ?? "";
+                                string emailorigen = "mailfordevelop70@gmail.com";
+                                string Contraseña = "gtiurgourbslomne";
+                                MailMessage mensajeemail = new MailMessage(emailorigen, correoreceptor, "Recuperacion de Contraseña", "<p>Su contraseña es la siguiente: "+contraseña+"<p>" );
+                                mensajeemail.IsBodyHtml = true;
+                                SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+                                smtp.EnableSsl = true;
+                                smtp.UseDefaultCredentials = false;
+                                smtp.Port = 587;
+                                smtp.Credentials = new NetworkCredential(emailorigen,Contraseña);
+                                smtp.Send(mensajeemail);
+                                smtp.Dispose();
+                                TempData["mensaje"] = "Correo enviado correctamente";
+                                return RedirectToAction("InicioRecuperar");
+                            }
+                            else
+                            {
+                                TempData["mensaje"] = "Correo electronico no valido.";
+                            }
+                        }
+                        con.Close();
+                    }
+                    return View();
+                }
+            }
+            catch (System.Exception e)
+            {
+                ViewBag.Error = e.Message;
+                return View();
+            }
         }
     }
 }
